@@ -130,13 +130,22 @@ body
 	background-color: white
 	+border-radius(10em)
 	transition: .25s ease
+	white-space: nowrap
 	&:hover
 		text-decoration: none
 		color: $seconc
 		+boxshadow(1px, 1px, 50px, -10px, white, 1)
+	&:focus
+		text-decoration: none
 	&_seconc
 		background: $seconc
 		color: white
+		margin: 40px 0
+		text-transform: none
+		.fa
+			font-size: 17px
+			position: relative;
+			top: 1px;
 		&:hover
 			color: white
 			+boxshadow(1px, 1px, 50px, -10px, $seconc, 1)
@@ -218,10 +227,11 @@ html.mm-right.mm-opening .mm-menu.mm-fx-menu-slide
 	text-align: center
 	img
 		max-width: 350px
+		width: 100%;
 		position: relative
 	&:after
 			content: ''
-			height: 350px
+			height: 340px
 			width: 350px
 			background: transparent
 			border: 5px solid $seconc
@@ -231,6 +241,48 @@ html.mm-right.mm-opening .mm-menu.mm-fx-menu-slide
 			top: 4%
 			z-index: -1
 
-
-
+.catalog
+	background: $accent
+	background-image: url('../img/catalog/background.png')
+	background-position: center center
+	background-repeat: no-repeat
+	height: 600px
+	position: relative
+	margin-top: 100px
+	&:after
+		content: ''
+		height: 108px
+		width: 105%
+		left: -10px
+		background: $accent
+		background-image: url('../img/catalog/background.png')
+		background-position: center center
+		background-repeat: no-repeat
+		border-top-left-radius: 200em 20em
+		border-top-right-radius: 200em 20em
+		position: absolute
+		top: -65px
+	&:before
+		content: 'Популярные букеты'
+		font-family: Raleway-ExtraBold
+		text-transform: uppercase
+		width: 50%
+		line-height: 1
+		position: absolute
+		top: calc(50% - 100px)
+		left: 5%
+		font-size: 100px
+		color: darken($accent, 2%)
+		z-index: 1
+	&-apple
+		position: absolute
+		left: 0
+		top: 40px
+		width: 130px
+		z-index: 10
+	&-grape
+		position: absolute
+		right: 0
+		bottom: 40px
+		width: 100px
 @import "media" // Всегда в конце

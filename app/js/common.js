@@ -20,4 +20,13 @@ $(function() {
             position  : 'right'
         }
     });
+
+    $(window).mousemove(function(e) {
+        var change;
+        var xpos=e.clientX;var ypos=e.clientY;var left= change*20;
+        var  xpos=xpos*2;ypos=ypos*2;
+        $('.catalog-apple').css('top',((0+(ypos/50))+"px"));
+        $('.catalog-grape').css('bottom',(( 0+(xpos/30))+"px"));
+    });
+
 });
