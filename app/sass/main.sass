@@ -1,7 +1,7 @@
 @import "fonts"
 @import "libs"
 @import "vars"
-
+@import "_mixins/box-shadow"
 
 *
 	-webkit-box-sizing: border-box
@@ -35,6 +35,10 @@ body input:required:valid,
 body textarea:required:valid
 	color: #666
 
+a:focus
+	outline: none
+numeric
+	font-family: PfDinTextPro-Regular
 html, body
 	height: 100%
 
@@ -42,7 +46,7 @@ body
 	font-size: 16px
 	min-width: 320px
 	position: relative
-	line-height: 1.75
+	line-height: 1.5
 	font-family: $default-font
 	overflow-x: hidden
 	opacity: 1
@@ -53,12 +57,17 @@ body
 	height: auto
 
 .top-line
-	padding-top: 40px
+	padding: 40px 0
+	position: relative
 	&-logo
 		width: 200px
 		height: auto
+		&-mmenu
+			width: 200px
+			height: auto
 	&-nav
 		padding-top: 15px
+		text-align: right
 		a
 			color: #202020
 			text-decoration: none
@@ -74,18 +83,154 @@ body
 	background-image: url('../img/slider/backslider.png')
 	&-item
 		&-img
-			width: 100%
-			text-align: right
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			img
 				max-width: 350px
 				width: 100%
 				text-align: right
 		&-text
 			color: white
+			position: relative
 			&-h2
 				font-size: 60px
 				font-family: Raleway-ExtraBold
 				text-transform: uppercase
+				line-height: 1
+			&-p
+				font-size: 16px
+	&-flex
+		display: flex
+		align-items: center
+.owl-dots
+	text-align: center
+.owl-dot
+	width: 14px
+	height: 14px
+	background-color: white
+	border-radius: 10em
+	display: inline-block
+	margin: 5px
+	transition: .9s ease
+	border: 2px transparent solid
+	&:hover
+		border: 2px darken($seconc, 10%) solid
+		transition: .9s ease
+	&.active
+		border: 2px darken($seconc, 10%) solid
+.button
+	display: inline-block
+	margin: 20px 0
+	padding: 12px 45px
+	font-family: Raleway-SemiBold
+	text-transform: uppercase
+	color: $seconc
+	font-size: 14px
+	background-color: white
+	+border-radius(10em)
+	transition: .25s ease
+	&:hover
+		text-decoration: none
+		color: $seconc
+		+boxshadow(1px, 1px, 50px, -10px, white, 1)
+	&_seconc
+		background: $seconc
+		color: white
+		&:hover
+			color: white
+			+boxshadow(1px, 1px, 50px, -10px, $seconc, 1)
+
+.hamburger
+	position: absolute
+	right: 0
+.hamburger-inner, .hamburger-inner::after, .hamburger-inner::before
+	width: 40px
+	height: 4px
+	background-color: $seconc
+	cursor: pointer
+.mm-menu.mm-offcanvas.mm-opened
+	z-index: 2
+html.mm-right.mm-opened .mm-menu.mm-fx-menu-slide
+	transform: translate3d(100%,0,0)
+
+html.mm-right.mm-opening .mm-menu.mm-fx-menu-slide
+	transform: translate3d(0,0,0)
+.mm-panels>.mm-panel>.mm-listview:first-child, .mm-panels>.mm-panel>.mm-navbar+.mm-listview
+	margin: 0
+.mm-navbar
+	border: 0
+.mm-listview
+	font-family: Raleway-SemiBold
+.mm-menu.mm-theme-white .mm-listview>li a:not(.mm-next)
+	color: #000000
+	&:hover
+		background: $seconc
+		color: white
+		border-radius: 10em
+.mm-listview>li, .mm-listview>li .mm-next, .mm-listview>li .mm-next:before, .mm-listview>li:after
+	margin: 10px 0
+.mm-menu.mm-theme-white .mm-listview>li.mm-selected>a:not(.mm-next), .mm-menu.mm-theme-white .mm-listview>li.mm-selected>span
+	background: $seconc
+	color: white
+	border-radius: 10em
+.mm-listview>li:not(.mm-divider):after
+	content: none
+.about
+	margin-top: 50px
+	&-text
+		&-h2
+			font-size: 40px
+			position: relative
+			padding-left: 10px
+			&:after
+				content: ''
+				height: 40px
+				width: 3px
+				background: $seconc
+				position: absolute
+				left: 0
+				top: 10px
+		&-p
+			margin-top: 20px
+		&-iconset
+			margin-top: 20px
+.iconset
+	&-item
+		display: flex
+		margin-top: 20px
+		&-icon
+			img
+				width: 25px
+				height: auto
+				padding-top: 2px
+		&-text
+			padding-left: 10px
+			&-h2
+				font-size: 18px
+				font-family: Raleway-Medium
+			&-p
+				font-size: 14px
+				.fa
+					font-size: 12.5px
+					padding-left: 1px
+.instfphoto
+	text-align: center
+	img
+		max-width: 350px
+		position: relative
+	&:after
+			content: ''
+			height: 350px
+			width: 350px
+			background: transparent
+			border: 5px solid $seconc
+			position: absolute
+			left: 17%
+			opacity: .2
+			top: 4%
+			z-index: -1
+
 
 
 @import "media" // Всегда в конце
