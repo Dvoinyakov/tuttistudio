@@ -4,15 +4,22 @@
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px)
-	/**/
-
-
+  .catalog
+    &-apple
+      width: 90px
+    &-grape
+      width: 50px
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px)
   .instfphoto
     &:after
       left: 8%
-
+  .catalog
+    &-item
+      padding-top: 30px
+      padding-bottom: 30px
+    &-second-line
+      margin: 0
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px)
@@ -36,6 +43,15 @@
       +boxshadow(1px, 1px, 50px, -10px, black, .2)
   .button
     white-space: nowrap
+  .catalog
+    &:before
+      content: none
+    &-apple, &-grape
+        display: none
+    &:after
+      width: 124%
+  .scall:after
+     content: none
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px)
 	/**/

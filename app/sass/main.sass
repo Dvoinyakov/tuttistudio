@@ -2,6 +2,7 @@
 @import "libs"
 @import "vars"
 @import "_mixins/box-shadow"
+@import "_mixins/_placeholder.sass"
 
 *
 	-webkit-box-sizing: border-box
@@ -28,12 +29,7 @@
 	color: #666
 	opacity: 1
 
-body input:focus:required:invalid,
-body textarea:focus:required:invalid
-	color: #666
-body input:required:valid,
-body textarea:required:valid
-	color: #666
+
 
 a:focus
 	outline: none
@@ -78,9 +74,8 @@ body
 			&:hover
 				border-bottom: 2px solid $seconc
 .slider
-	background-color: $seconc
+	background: $seconc radial-gradient(rgba(white, 0.3), rgba($seconc, 0.3))
 	padding: 50px 0
-	background-image: url('../img/slider/backslider.png')
 	&-item
 		&-img
 			display: flex;
@@ -122,7 +117,7 @@ body
 .button
 	display: inline-block
 	margin: 20px 0
-	padding: 12px 45px
+	padding: 8px 45px
 	font-family: Raleway-SemiBold
 	text-transform: uppercase
 	color: $seconc
@@ -131,12 +126,17 @@ body
 	+border-radius(10em)
 	transition: .25s ease
 	white-space: nowrap
+	border: none
+	&-container-text
+		text-align: center
 	&:hover
 		text-decoration: none
+		cursor: pointer
 		color: $seconc
 		+boxshadow(1px, 1px, 50px, -10px, white, 1)
 	&:focus
 		text-decoration: none
+		outline: none
 	&_seconc
 		background: $seconc
 		color: white
@@ -149,6 +149,24 @@ body
 		&:hover
 			color: white
 			+boxshadow(1px, 1px, 50px, -10px, $seconc, 1)
+	&_catalog
+		color: $accent
+		&:hover
+			color: $accent
+	&_opinion
+		background: $accent
+		color: white
+		margin: 40px 0
+		&:hover
+			color: white
+			+boxshadow(1px, 1px, 50px, -10px, $accent, 1)
+	&_popup
+		background: $accent
+		color: white
+		margin: 30px 0 5px
+		&:hover
+			color: white
+			+boxshadow(1px, 1px, 50px, -10px, $accent, 1)
 
 .hamburger
 	position: absolute
@@ -192,10 +210,11 @@ html.mm-right.mm-opening .mm-menu.mm-fx-menu-slide
 			font-size: 40px
 			position: relative
 			padding-left: 10px
+			font-family: Raleway-Medium
 			&:after
 				content: ''
 				height: 40px
-				width: 3px
+				width: 4px
 				background: $seconc
 				position: absolute
 				left: 0
@@ -242,26 +261,103 @@ html.mm-right.mm-opening .mm-menu.mm-fx-menu-slide
 			z-index: -1
 
 .catalog
-	background: $accent
-	background-image: url('../img/catalog/background.png')
-	background-position: center center
-	background-repeat: no-repeat
-	height: 600px
+	padding: 40px 0 28px
 	position: relative
 	margin-top: 100px
+	overflow: hidden
+	&-popup
+		background: white
+		width: 350px
+		padding: 20px 0
+		text-align: center
+		display: flex
+		justify-content: center
+		align-items: center
+		flex-direction: column
+		margin: auto
+		position: relative
+		overflow: hidden
+		+border-radius(20px)
+		&:after, &:before
+			content: ''
+			width: 100px
+			height: 50px
+			background: $accent
+			transform: rotate(45deg)
+			position: absolute
+		&:after
+			top: -30px
+			right: -34px
+		&:before
+			bottom: -30px
+			left: -34px
+		&-politics
+			font-size: 10px
+			color: $accent
+			text-decoration: none
+			border-bottom: 1px solid $accent
+			&:hover
+				color: darken($accent, 50%)
+				text-decoration: none
+				border-bottom: 1px solid darken($accent, 50%)
+		input
+			margin: 10px 0
+			@include placeholder
+				color: black
+			border-radius: 5px
+			width: 70%
+			font-size: 15px
+			padding: 10px 20px
+			font-family: PfDinTextPro-Regular
+			border: 1px solid lighten($accent, 40%)
+			color: black
+			background: #fff
+			&:focus
+				outline: none
+				border: 1px solid lighten($accent, 10%)
+		&-head
+			margin: 0 0 2px
+			&-h2
+				font-family: Raleway-SemiBold
+				font-size: 25px
+				text-transform: uppercase
+				line-height: 1
+			&-namebouq
+				font-family: Raleway-Light
+				font-size: 20px
+				font-size: 14px
+				font-weight: 300
+				text-transform: uppercase
+				display: flex
+				align-items: center
+				white-space: nowrap
+				margin: 0
+				margin-bottom: -10px
+				span
+					margin: 10px
+				&::before, &::after
+					content: ''
+					height: 1px
+					width: 100%
+					position: relative
+					background-color: #000
+					display: inline-block
+	&-second-line
+		margin-top: 50px
 	&:after
 		content: ''
-		height: 108px
-		width: 105%
-		left: -10px
-		background: $accent
-		background-image: url('../img/catalog/background.png')
-		background-position: center center
-		background-repeat: no-repeat
+		height: 100%
+		width: 113%
+		left: -50px
+		background: $accent  radial-gradient(rgba(white, 0.3), rgba($accent, 0.3));
+		-webkit-border-top-left-radius: 200em 20em
 		border-top-left-radius: 200em 20em
+		-webkit-border-top-right-radius: 200em 20em
 		border-top-right-radius: 200em 20em
 		position: absolute
-		top: -65px
+		top: 0
+		/* left: 50px; */
+		z-index: -1;
 	&:before
 		content: 'Популярные букеты'
 		font-family: Raleway-ExtraBold
@@ -272,12 +368,12 @@ html.mm-right.mm-opening .mm-menu.mm-fx-menu-slide
 		top: calc(50% - 100px)
 		left: 5%
 		font-size: 100px
-		color: darken($accent, 2%)
-		z-index: 1
+		color: $accent
+		opacity: .4
 	&-apple
 		position: absolute
 		left: 0
-		top: 40px
+		top: 200px
 		width: 130px
 		z-index: 10
 	&-grape
@@ -285,4 +381,212 @@ html.mm-right.mm-opening .mm-menu.mm-fx-menu-slide
 		right: 0
 		bottom: 40px
 		width: 100px
+	&-item
+		text-align: center
+		display: flex
+		flex-direction: column
+		justify-content: center
+		align-items: center
+		color: white
+		&_bottom
+			padding-top: 50px
+		&-img
+			width: 180px
+			height: 180px
+			background: white
+			+border-radius(10em)
+			img
+				+border-radius(10em)
+				width: 100%
+				height: 100%
+		&-head
+			font-size: 24px
+			font-family: Raleway-SemiBold
+			margin-top: 10px
+			&-price
+				display: inline-block
+				color: darken($accent, 20%)
+				&_blur
+					-webkit-filter: blur(2px)
+					filter: blur(2px)
+				span
+					font-family: "PfDinTextPro-Medium"
+			.fa
+				font-size: 22px
+				padding-left: 2px
+		&-p
+			font-size: 16px
+			font-family: Raleway-Medium
+.opinion
+	margin-top: 50px
+	&-text
+		&-h2
+			font-size: 40px
+			position: relative
+			padding-left: 10px
+			font-family: Raleway-Medium
+			&:after
+				content: ''
+				height: 40px
+				width: 4px
+				background: $accent
+				position: absolute
+				left: 0
+				top: 10px
+		&-p
+			margin-top: 20px
+	&-item
+		margin-top: 50px
+		display: flex
+		&-text
+			padding-left: 10px
+			&-h5
+				font-family: Raleway-SemiBold
+				font-size: 20px
+			&-p
+				font-size: 14px
+				padding-right: 10px
+	&-img
+		&-container
+			width: 75px
+			height: 75px
+			background: white
+			justify-content: center
+			display: flex
+			align-items: center
+			position: relative
+			+border-radius(10em)
+			overflow: hidden
+			img
+				position: absolute
+.scall
+	margin-top: 50px
+	background: $seconc  radial-gradient(rgba(white, 0.3), rgba($seconc , 0.3))
+	padding: 30px 0 10px
+	overflow: hidden
+	position: relative
+	&:after
+		content: ''
+		background: url(../img/s-call/girl.png)
+		width: 100%
+		height: 150%
+		background-repeat: no-repeat
+		background-size: 340px
+		position: absolute
+		top: -28px
+		left: 50%
+.callback
+	color: white
+	text-align: center
+	display: flex
+	justify-content: center
+	align-items: center
+	flex-direction: column
+	&-head-h2
+		font-family: Raleway-ExtraBold
+		font-size: 30px
+		line-height: 1
+	&-head-p
+		font-size: 18px
+		font-family: Raleway-Light
+	input
+		margin: 10px 0
+		@include placeholder
+				color: $seconc
+		border-radius: 5px
+		width: 70%
+		font-size: 15px
+		padding: 10px 20px
+		border: none
+		font-family: PfDinTextPro-Regular
+		color: $seconc
+		&:focus
+			outline: none
+
+.success
+	position: absolute
+	top: 0
+	right: 0
+	left: 0
+	bottom: 0
+	text-transform: uppercase
+	font-family: Raleway-SemiBold
+	display: none
+	z-index: 10
+	span
+		margin: auto
+		font-size: 21px
+	& ~ *
+		transition: all .5s ease
+	&.active
+		& ~ *
+			display: inline-block
+			opacity: .5
+			filter: blur(10px)
+
+.contact
+	margin-top: 50px
+	&-text
+		&-h2
+			font-size: 40px
+			position: relative
+			padding-left: 10px
+			font-family: Raleway-Medium
+			&:after
+				content: ''
+				height: 40px
+				width: 4px
+				background: $seconc
+				position: absolute
+				left: 0
+				top: 10px
+		&-p
+			margin-top: 20px
+		&-social
+			&-h5
+				font-family: Raleway-SemiBold
+				font-size: 18px
+				margin-top: 15px
+			&-vk, &-instagram
+				color: $seconc
+				&:hover
+					text-decoration: none
+					color: darken($seconc, 20%)
+					cursor: pointer
+			&-vk
+				font-size: 35px
+			&-instagram
+				font-size: 30px
+		&-other
+			&-h5
+				font-family: Raleway-SemiBold
+				font-size: 18px
+				margin-top: 15px
+			&-phone, &-mail
+				font-family: PfDinTextPro-Regular
+				margin-top: 10px
+				font-size: 25px
+
+.footer
+	margin-top: 50px
+	&-link
+		display: flex
+		justify-content: center
+		align-items: center
+		color: $seconc
+		font-family: PfDinTextPro-Medium
+		min-height: 50px
+
+.mfp-close-btn-in .mfp-close
+	color: #fff
+	position: absolute
+	right: -7px
+	top: -6px
+	opacity: 1
+	transition: .2s ease
+	font-size: 24px
+	line-height: 24px
+	&:hover
+		transform: rotate(90deg)
+
 @import "media" // Всегда в конце

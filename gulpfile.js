@@ -30,7 +30,9 @@ gulp.task('js', ['common-js'], function() {
 		'app/libs/jquery/dist/jquery.min.js',
 		'app/libs/owl.carousel/dist/owl.carousel.js',
 		'app/libs/mmenu/jquery.mmenu.all.js',
-		'app/js/common.min.js', // Всегда в конце
+		'app/libs/mask-plugin/dist/jquery.mask.js',
+		'app/libs/magnific-popup/dist/jquery.magnific-popup.js',
+		'app/js/common.min.js' // Всегда в конце
 		])
 	.pipe(concat('scripts.min.js'))
 	// .pipe(uglify()) // Минимизировать весь js (на выбор)
@@ -76,6 +78,7 @@ gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 	var buildFiles = gulp.src([
 		'app/*.html',
 		'app/.htaccess',
+		'app/*.php',
 		]).pipe(gulp.dest('dist'));
 
 	var buildCss = gulp.src([
@@ -95,9 +98,9 @@ gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 gulp.task('deploy', function() {
 
 	var conn = ftp.create({
-		host:      'hostname.com',
-		user:      'username',
-		password:  'userpassword',
+		host:      '89.223.26.186',
+		user:      'admin_tuttistudio',
+		password:  'tuttistudioQo3',
 		parallel:  10,
 		log: gutil.log
 	});
@@ -107,7 +110,7 @@ gulp.task('deploy', function() {
 	'dist/.htaccess',
 	];
 	return gulp.src(globs, {buffer: false})
-	.pipe(conn.dest('/path/to/folder/on/server'));
+	.pipe(conn.dest('/'));
 
 });
 
